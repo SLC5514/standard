@@ -1,0 +1,38 @@
+@import './transition.scss';
+@import './mixins.scss';
+
+// 全局样式
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  width: 6px;
+  background-color: rgba(#101F1C, 0.1);
+  border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(#101F1C, 0.5);
+  background-clip: padding-box;
+  min-height: 28px;
+  border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(#101F1C, 0.8);
+}
+
+/* 页面样式 */
+html,
+body {
+  height: 100%;
+}
+
+#app {
+  height: 100%;
+  overflow: auto;
+}
