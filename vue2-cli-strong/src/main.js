@@ -3,34 +3,24 @@ import router from './router'
 import store from './store'
 import App from './App.vue'
 
-import 'normalize.css/normalize.css' // a modern alternative to CSS resets
+import 'normalize.css/normalize.css' // CSS重置
 
-import VueLazyLoad from 'vue-lazyload'
-// import Element from 'element-ui'
-import { Loading, Message } from 'element-ui'
+// UI库
+import Element from 'element-ui'
+import './styles/element-variables.scss'
+// import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(Element)
+// TODO 按需加载 组件样式会被提升 不会被全局样式覆盖
+// import { Loading, Message } from 'element-ui'
+// Vue.use(Loading)
+// Vue.prototype.$message = Message
 
 // 移动端 100vh 问题
 import vhCheck from 'vh-check'
 vhCheck('browser-address-bar')
 
-import './styles/global.scss' // global style
-
-import './icons' // icon
-import './permission' // permission control
-
-/**
- * If you don't want to use mock-server
- * you want to use MockJs for mock api
- * you can execute: mockXHR()
- *
- * Currently MockJs will be used in the production environment,
- * please remove it before going online! ! !
- */
-import './mock'
-
-Vue.use(Loading)
-Vue.prototype.$message = Message
-
+// 图片懒加载
+import VueLazyLoad from 'vue-lazyload'
 Vue.use(VueLazyLoad, {
   preLoad: 1.3,
   // error: imgLoading,
@@ -38,6 +28,15 @@ Vue.use(VueLazyLoad, {
   lazyComponent: true,
   observer: true
 })
+
+// 自定义指令
+import Directives from './directives'
+Vue.use(Directives)
+
+import './styles/global.scss' // 全局样式
+import './icons' // svg图标
+import './permission' // 权限控制
+import './mock' // mock数据
 
 // 防止连续点击
 Vue.directive("preventReClick", {
@@ -54,6 +53,7 @@ Vue.directive("preventReClick", {
   }
 });
 
+// 生产提示
 Vue.config.productionTip = false
 
 new Vue({
